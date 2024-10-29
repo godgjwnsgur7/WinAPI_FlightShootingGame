@@ -84,7 +84,8 @@ void CGameMgr::LoadStageData(int _stageId)
 
 	while (str != "End\r")
 	{
-		m_vecStageDatas.push_back(GetStageData(str));
+		tStageData data = GetStageData(str);
+		m_vecStageDatas.push_back(data);
 		FScanf(szBuff, pFile);
 		str = szBuff;
 	}
