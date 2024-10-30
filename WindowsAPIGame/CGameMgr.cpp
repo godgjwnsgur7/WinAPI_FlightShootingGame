@@ -259,6 +259,7 @@ void CGameMgr::StartGame()
 void CGameMgr::StartStage(int _stageId)
 {
 	LoadStageData(_stageId);
+	m_iSpawnIndex = 0;
 }
 
 void CGameMgr::ClearStage()
@@ -267,7 +268,7 @@ void CGameMgr::ClearStage()
 	CSceneMgr::GetInst()->GetCurrScene()->DeleteGroup(GROUP_TYPE::PROJ_MONSTER);
 	
 	m_bGameState = false;
-	++m_iStageId;
+	m_iStageId++;
 	
 	if (MAXSTAGE < m_iStageId)
 		m_iStageId = MAXSTAGE;

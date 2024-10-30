@@ -11,7 +11,6 @@ class CObject
 {
 protected:
 	wstring m_strName;
-
 	Vector2 m_vPos;
 	Vector2 m_vScale;
 

@@ -11,7 +11,7 @@
 
 CItem::CItem(ITEM_TYPE _eType, Vector2 _vPos)
 	: m_vDir{}
-	, m_fSpeed(200.f)
+	, m_fSpeed(100.f)
 {
 	m_vPos = _vPos;
 	m_vDir.x = ((int)_vPos.x % 2 == 0) ? 1 : -1;

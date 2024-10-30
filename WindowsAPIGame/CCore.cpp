@@ -71,25 +71,22 @@ int CCore::Init(HWND _hWnd, POINT _ptResolution)
 
 void CCore::Progress()
 {
+	// Update
 	CTimeMgr::GetInst()->Update();
 	CKeyMgr::GetInst()->Update();
 	CCamera::GetInst()->Update();
-
 	CSceneMgr::GetInst()->Update();
 	CCollisionMgr::GetInst()->Update();
 	CUIMgr::GetInst()->Update();
 
-	// 화면 랜더링
+	// Render
 	Clear();
-
 	CSceneMgr::GetInst()->Render(m_pMemTex->GetDC());
 	CCamera::GetInst()->Render(m_pMemTex->GetDC());
-
 	BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y, m_pMemTex->GetDC(), 0, 0, SRCCOPY);
+	CTimeMgr::GetInst()->Render(); // Debug용
 
-	CTimeMgr::GetInst()->Render();
-
-	// 이벤트 지연처리
+	// Event 지연처리
 	CEventMgr::GetInst()->Update();
 }
 
