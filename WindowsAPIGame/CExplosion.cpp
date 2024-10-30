@@ -31,7 +31,9 @@ void CExplosion::Update()
 		if (GetAnimator()->GetCurrAnimName() == L"Explosion1")
 			GetAnimator()->Play(L"Explosion2", false);
 		else
+		{
 			DeleteObject(this);
+		}
 	}
 }
 

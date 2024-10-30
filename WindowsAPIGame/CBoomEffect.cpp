@@ -12,6 +12,8 @@
 CBoomEffect::CBoomEffect()
 	: m_fCurrTime(0.f)
 	, m_fEffectTime(1.5f)
+	, m_pPlayerFunc(nullptr)
+	, m_pPlayerInst(nullptr)
 {
 	Vector2 vResolution = CCore::GetInst()->GetResolution();
 	SetPos(vResolution / 2.f);
@@ -34,6 +36,7 @@ void CBoomEffect::Update()
 
 	if (m_fCurrTime >= m_fEffectTime)
 	{
+		m_fCurrTime = 0.f;
 		if (m_pPlayerInst && m_pPlayerFunc)
 		{
 			((*m_pPlayerInst).*m_pPlayerFunc)();

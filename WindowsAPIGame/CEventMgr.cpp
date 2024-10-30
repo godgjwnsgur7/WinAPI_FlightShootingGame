@@ -7,6 +7,8 @@
 #include "CScene.h"
 
 CEventMgr::CEventMgr()
+	: vecDead{}
+	, vecEvent{}
 {
 
 }
@@ -17,20 +19,19 @@ CEventMgr::~CEventMgr()
 }
 
 void CEventMgr::Update()
-{
-	for (UINT i = 0; i < vecDead.size(); ++i)
+{ 
+	for (int i = vecDead.size() - 1; i >= 0; i--)
 	{
-		delete vecDead[i];
+		if(vecDead[i]->IsDead())
+			delete vecDead[i];
 	}		
 	vecDead.clear();
-	vecDead.shrink_to_fit();
 
-	for (UINT i = 0; i < vecEvent.size(); ++i)
+	for (int i = 0; i < vecEvent.size(); i++)
 	{
 		Excute(vecEvent[i]);
 	}
 	vecEvent.clear();
-	vecEvent.shrink_to_fit();
 }
 
 void CEventMgr::Excute(const tEvent& _eve)
@@ -51,7 +52,7 @@ void CEventMgr::Excute(const tEvent& _eve)
 	{
 		// lParam : Object Adress
 		CObject* pDeadObj = (CObject*)_eve.lParam;
-		if (pDeadObj->IsDead())
+		if (pDeadObj == nullptr && pDeadObj->IsDead())
 			return;
 		pDeadObj->SetDead();
 		vecDead.push_back(pDeadObj);

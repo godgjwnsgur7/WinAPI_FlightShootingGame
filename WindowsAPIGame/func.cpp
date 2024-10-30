@@ -2,6 +2,7 @@
 #include "func.h"
 
 #include "CEventMgr.h"
+#include "CObject.h"
 
 void CreateObject(CObject* _pObj, GROUP_TYPE _eGroup)
 {
@@ -15,6 +16,9 @@ void CreateObject(CObject* _pObj, GROUP_TYPE _eGroup)
 
 void DeleteObject(CObject* _pObj)
 {
+	if (_pObj == nullptr || _pObj->IsDead())
+		return;
+
 	tEvent evn = {};
 	evn.eEven = EVENT_TYPE::DELETE_OBJECT;
 	evn.lParam = (DWORD_PTR)_pObj;
